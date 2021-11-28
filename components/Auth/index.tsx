@@ -8,6 +8,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 // hook imports //
 import { useState } from "react";
+import Footnote from "./Footnote";
 
 const Auth = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -30,6 +31,7 @@ const Auth = () => {
       ) : (
         <SignUp handleToggleSignIn={handleToggleSignIn} />
       )}
+      <Footnote isSignIn={isSignIn} />
     </Stack>
   );
 };
