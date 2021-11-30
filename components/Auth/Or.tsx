@@ -1,4 +1,4 @@
-// mui imports //
+// -- mui -- //
 import { Typography } from "@mui/material";
 
 const Or = () => {

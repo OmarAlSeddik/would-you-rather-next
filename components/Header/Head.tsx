@@ -1,3 +1,4 @@
+// -- mui -- //
 import {
   Avatar,
   ButtonBase,
@@ -32,7 +33,7 @@ const Head = () => {
           <Card>
             <Stack direction="row" alignItems="center">
               <Avatar variant="square">O</Avatar>
-              <Typography>[username]</Typography>
+              <Typography sx={{ padding: "0 0.5rem" }}>[username]</Typography>
             </Stack>
           </Card>
         </ButtonBase>

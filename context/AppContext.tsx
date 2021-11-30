@@ -9,14 +9,26 @@ import {
 } from "@mui/material";
 import { indigo } from "@mui/material/colors";
 // hook imports //
-import { createContext, useMemo } from "react";
+import { createContext, useState, useMemo } from "react";
 
-const ThemeContext = createContext({
+interface AppContextInterface {
+  theme: {};
+  isMobile: boolean;
+  loggedInUserId: string;
+  handleLogin: (id: string) => any;
+  handleLogout: () => any;
+}
+
+const AppContext = createContext<AppContextInterface>({
   theme: {},
   isMobile: false,
+  loggedInUserId: "",
+  handleLogin: () => {},
+  handleLogout: () => {},
 });
 
-export const ThemeContextProvider = (props: any) => {
+export const AppContextProvider = (props: any) => {
+  // theme block //
   let theme: any = useMemo(
     () =>
       createTheme({
@@ -41,14 +53,27 @@ export const ThemeContextProvider = (props: any) => {
   theme = responsiveFontSizes(theme);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  // auth block //
+  const [loggedInUserId, setLoggedInUserId] = useState("");
+
+  const handleLogin = (id: string) => {
+    setLoggedInUserId(id);
+  };
+
+  const handleLogout = () => {
+    setLoggedInUserId("");
+  };
+
   return (
-    <ThemeContext.Provider value={{ theme, isMobile }}>
+    <AppContext.Provider
+      value={{ theme, isMobile, loggedInUserId, handleLogin, handleLogout }}
+    >
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {props.children}
       </ThemeProvider>
-    </ThemeContext.Provider>
+    </AppContext.Provider>
   );
 };
 
-export default ThemeContext;
+export default AppContext;

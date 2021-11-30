@@ -1,4 +1,4 @@
-// mui imports //
+// -- mui -- //
 import { Card, MenuItem, Stack, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
@@ -34,11 +34,7 @@ const Demo = () => {
           <MenuItem value="2">User 2</MenuItem>
           <MenuItem value="3">User 3</MenuItem>
         </TextField>
-        <LoadingButton
-          variant="contained"
-          loadingPosition="end"
-          sx={{ textTransform: "none" }}
-        >
+        <LoadingButton variant="contained" sx={{ textTransform: "none" }}>
           Sign In
         </LoadingButton>
       </Stack>

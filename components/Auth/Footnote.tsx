@@ -1,4 +1,4 @@
-// mui imports //
+// -- mui -- //
 import { Typography, Stack, Link } from "@mui/material";
 
 const Footnote = (props: any) => {

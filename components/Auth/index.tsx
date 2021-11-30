@@ -1,14 +1,14 @@
-// mui imports //
-import { Stack, Typography } from "@mui/material";
-// local component imports //
+// -- mui -- //
+import { Stack } from "@mui/material";
+// -- local components -- //
 import Demo from "./Demo";
 import Logo from "./Logo";
 import Or from "./Or";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-// hook imports //
-import { useState } from "react";
 import Footnote from "./Footnote";
+// -- basic & custom hooks -- //
+import { useState } from "react";
 
 const Auth = () => {
   const [isSignIn, setIsSignIn] = useState(true);

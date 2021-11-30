@@ -1,4 +1,4 @@
-// mui imports //
+// -- mui -- //
 import { Stack, Typography } from "@mui/material";
 import QuizRoundedIcon from "@mui/icons-material/QuizRounded";
 

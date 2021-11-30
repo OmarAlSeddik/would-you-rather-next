@@ -1,10 +1,10 @@
-// mui imports //
+// -- mui -- //
 import { Card, Stack, ToggleButtonGroup, ToggleButton } from "@mui/material";
 import { Box } from "@mui/system";
-// local component imports //
+// -- local components -- //
 import Unanswered from "./unanswered";
 import Answered from "./answered";
-// hook imports //
+// -- basic & custom hooks -- //
 import { useState } from "react";
 
 const Home = () => {

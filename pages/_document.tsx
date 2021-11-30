@@ -7,8 +7,8 @@ class MyDocument extends Document {
         <Head>
           {/* metadata */}
           <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="theme-color" content="#1a237e" />
+
           {/* favicons */}
           <link
             rel="apple-touch-icon"
@@ -28,6 +28,7 @@ class MyDocument extends Document {
             href="../public/favicon/favicon-16x16.png"
           />
           <link rel="manifest" href="./favicon/site.webmanifest" />
+
           {/* fonts */}
           <link
             rel="stylesheet"
