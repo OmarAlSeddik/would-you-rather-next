@@ -1,15 +1,22 @@
 // -- mui -- //
-import { Button, Card, Stack, TextField, Typography } from "@mui/material";
+import { Button, Card, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
+// -- basic & custom hooks -- //
+import { useContext } from "react";
+// -- context -- //
+import AppContext from "../../context/AppContext";
 // -- formik & yup -- //
 import { useFormik } from "formik";
 import * as yup from "yup";
 // -- firebase -- //
 import { auth } from "../../firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import useUser from "../../hooks/useUser";
+import useAvatar from "../../hooks/useAvatar";
 
 const SignIn = (props: any) => {
+  const context = useContext(AppContext);
+
   const [signInWithEmailAndPassword, user, loading, databaseError] =
     useSignInWithEmailAndPassword(auth);
 
@@ -61,7 +68,9 @@ const SignIn = (props: any) => {
     "Needs to be at least 8 characters long.";
 
   // -- runs if the sign in process is successful -- //
-  if (user) return <div>Successfully logged in!</div>;
+  const loggedUser = useUser();
+
+  if (user) context.handleLogin(user.user.uid);
 
   return (
     <Card

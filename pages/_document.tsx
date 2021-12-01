@@ -1,3 +1,4 @@
+// -- next -- //
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
@@ -27,7 +28,7 @@ class MyDocument extends Document {
             sizes="16x16"
             href="../public/favicon/favicon-16x16.png"
           />
-          <link rel="manifest" href="./favicon/site.webmanifest" />
+          <link rel="manifest" href="../public/favicon/site.webmanifest" />
 
           {/* fonts */}
           <link

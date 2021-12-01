@@ -140,33 +140,9 @@ const SignUp = (props: any) => {
         />
         <TextField
           fullWidth
-          size="small"
-          sx={{ marginBottom: "0.5rem" }}
-          id="email"
-          name="email"
-          label="Email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          error={emailError}
-          helperText={emailHelperText}
-        />
-        <TextField
-          fullWidth
-          size="small"
-          sx={{ marginBottom: "0.5rem" }}
-          id="password"
-          name="password"
-          type="password"
-          label="Password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          error={passwordError}
-          helperText={passwordHelperText}
-        />
-        <TextField
-          fullWidth
           select
           size="small"
+          sx={{ marginBottom: "0.5rem" }}
           id="avatar"
           name="avatar"
           label="Avatar"
@@ -192,6 +168,31 @@ const SignUp = (props: any) => {
             </MenuItem>
           ))}
         </TextField>
+        <TextField
+          fullWidth
+          size="small"
+          sx={{ marginBottom: "0.5rem" }}
+          id="email"
+          name="email"
+          label="Email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          error={emailError}
+          helperText={emailHelperText}
+        />
+        <TextField
+          fullWidth
+          size="small"
+          sx={{ marginBottom: "0.5rem" }}
+          id="password"
+          name="password"
+          type="password"
+          label="Password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          error={passwordError}
+          helperText={passwordHelperText}
+        />
         <LoadingButton
           fullWidth
           variant="contained"

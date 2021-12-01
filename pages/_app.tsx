@@ -1,10 +1,10 @@
 // -- next -- //
 import type { AppProps } from "next/app";
 import Head from "next/Head";
-// -- local components -- //
-import Header from "../components/Header";
 // -- providers -- //
 import { AppContextProvider } from "../context/AppContext";
+// -- local components -- //
+import Header from "../components/Header";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      {/* <Header /> */}
+      <Header />
       <Component {...pageProps} />
     </AppContextProvider>
   );

@@ -4,10 +4,23 @@ import { Box } from "@mui/system";
 // -- local components -- //
 import Unanswered from "./unanswered";
 import Answered from "./answered";
+// -- next -- //
+import { useRouter } from "next/dist/client/router";
 // -- basic & custom hooks -- //
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+// -- context -- //
+import AppContext from "../../context/AppContext";
 
 const Home = () => {
+  // -- routing block -- //
+  const context = useContext(AppContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!context.loggedInUserId) router.replace("/auth");
+  }, [context.loggedInUserId, router]);
+
+  // -- state block -- //
   const [tapValue, setTabValue] = useState("unanswered");
 
   const handleTabValue = (

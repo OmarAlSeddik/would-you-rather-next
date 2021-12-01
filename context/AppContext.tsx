@@ -1,4 +1,4 @@
-// mui imports //
+// -- mui -- //
 import {
   createTheme,
   alpha,
@@ -8,7 +8,7 @@ import {
   CssBaseline,
 } from "@mui/material";
 import { indigo } from "@mui/material/colors";
-// hook imports //
+// -- hook -- //
 import { createContext, useState, useMemo } from "react";
 
 interface AppContextInterface {
