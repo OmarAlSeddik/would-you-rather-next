@@ -11,8 +11,6 @@ import * as yup from "yup";
 // -- firebase -- //
 import { auth } from "../../firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import useUser from "../../hooks/useUser";
-import useAvatar from "../../hooks/useAvatar";
 
 const SignIn = (props: any) => {
   const context = useContext(AppContext);
@@ -68,8 +66,6 @@ const SignIn = (props: any) => {
     "Needs to be at least 8 characters long.";
 
   // -- runs if the sign in process is successful -- //
-  const loggedUser = useUser();
-
   if (user) context.handleLogin(user.user.uid);
 
   return (

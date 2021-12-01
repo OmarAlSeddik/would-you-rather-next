@@ -1,7 +1,24 @@
 // -- mui -- //
 import { Tab, Tabs } from "@mui/material";
+// -- next -- //
+import { NextLinkComposed } from "../Link";
+import { useRouter } from "next/dist/client/router";
+// -- basic/custom hooks -- //
+import { useEffect, useState } from "react";
 
 const Navigation = () => {
+  const pathname = useRouter().pathname;
+
+  useEffect(() => {
+    setPageValue(pathname);
+  }, [pathname]);
+
+  const [pageValue, setPageValue] = useState(pathname);
+
+  const handlePageChange = (event: React.ChangeEvent<{}>, newValue: string) => {
+    setPageValue(newValue);
+  };
+
   return (
     <Tabs
       variant="fullWidth"
@@ -13,6 +30,8 @@ const Navigation = () => {
           backgroundColor: "secondary.main",
         },
       }}
+      value={pageValue}
+      onChange={handlePageChange}
     >
       <Tab
         label="Home"
@@ -21,6 +40,9 @@ const Navigation = () => {
           textTransform: "none",
           "&:hover": { color: "primary.main" },
         }}
+        component={NextLinkComposed}
+        to="/"
+        value="/"
       />
       <Tab
         label="Ask a Question"
@@ -29,6 +51,9 @@ const Navigation = () => {
           textTransform: "none",
           "&:hover": { color: "primary.main" },
         }}
+        component={NextLinkComposed}
+        to="/add-question"
+        value="/add-question"
       />
       <Tab
         label="Leaderboard"
@@ -37,6 +62,9 @@ const Navigation = () => {
           textTransform: "none",
           "&:hover": { color: "primary.main" },
         }}
+        component={NextLinkComposed}
+        to="/leaderboard"
+        value="/leaderboard"
       />
     </Tabs>
   );

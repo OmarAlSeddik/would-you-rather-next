@@ -6,10 +6,35 @@ import {
   Paper,
   Stack,
   Typography,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import QuestionAnswerTwoToneIcon from "@mui/icons-material/QuestionAnswerTwoTone";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+// -- basic/custom hooks -- //
+import { useContext, useState } from "react";
+import useUser from "../../hooks/useUser";
+import useAvatar from "../../hooks/useAvatar";
+// -- context -- //
+import AppContext from "../../context/AppContext";
 
 const Head = () => {
+  const context = useContext(AppContext);
+  const user = useUser();
+  const avatar = useAvatar(user?.avatar);
+
+  // -- menu control -- //
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = anchorEl ? true : false;
+
+  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Paper sx={{ borderRadius: 0 }}>
       <Stack
@@ -29,14 +54,40 @@ const Head = () => {
         <ButtonBase
           disableRipple
           sx={{ textTransform: "none", marginLeft: "auto" }}
+          onClick={handleOpen}
         >
           <Card>
             <Stack direction="row" alignItems="center">
-              <Avatar variant="square">O</Avatar>
-              <Typography sx={{ padding: "0 0.5rem" }}>[username]</Typography>
+              <Avatar variant="square">{avatar}</Avatar>
+              <Typography sx={{ padding: "0 0.5rem" }}>{user?.name}</Typography>
             </Stack>
           </Card>
         </ButtonBase>
+        <Menu
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          open={open}
+          onClose={handleClose}
+          sx={{ ".MuiMenu-list": { padding: 0 } }}
+        >
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              context.handleLogout();
+            }}
+          >
+            <Stack direction="row" justifyContent="space-between">
+              <LogoutRoundedIcon
+                fontSize="small"
+                sx={{ marginRight: 1, color: "primary.main" }}
+              />
+              <Typography>Logout</Typography>
+            </Stack>
+          </MenuItem>
+        </Menu>
       </Stack>
     </Paper>
   );

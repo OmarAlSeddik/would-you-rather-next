@@ -1,8 +1,43 @@
 // -- mui -- //
 import { Card, MenuItem, Stack, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
+// -- basic/custom hooks -- //
+import { useContext, useState } from "react";
+import useUsers from "../../hooks/useUsers";
+// -- context -- //
+import AppContext from "../../context/AppContext";
+// -- firebase -- //
+import { auth } from "../../firebase";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 const Demo = () => {
+  const context = useContext(AppContext);
+  const users = useUsers();
+  const [selectedUser, setSelectedUser] = useState<any>("");
+
+  const handleSelectedUserChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSelectedUser(event.target.value as string);
+  };
+
+  const userOptions = [
+    users?.H0Ilz6FBjxQYJ2x3stRWEeHNppe2,
+    users?.EW8tZOqc7edRdsEH2DtRvKSk6ni2,
+    users?.lw4u7iPy4sdjUW5U8A9urpt5AxJ2,
+  ];
+
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  const handleSubmit = () => {
+    const email = selectedUser?.email;
+    const password = "123456789";
+    return signInWithEmailAndPassword(email, password);
+  };
+
+  if (user) context.handleLogin(user.user.uid);
+
   return (
     <Card
       raised
@@ -27,14 +62,23 @@ const Demo = () => {
           size="small"
           id="select-user"
           label="Select User"
+          error={!!error}
           helperText="Select a demo user."
           sx={{ marginBottom: "0.5rem" }}
+          onChange={handleSelectedUserChange}
         >
-          <MenuItem value="1">User 1</MenuItem>
-          <MenuItem value="2">User 2</MenuItem>
-          <MenuItem value="3">User 3</MenuItem>
+          {userOptions.map((demoUser: any, index) => (
+            <MenuItem value={demoUser} key={index}>
+              {demoUser?.name}
+            </MenuItem>
+          ))}
         </TextField>
-        <LoadingButton variant="contained" sx={{ textTransform: "none" }}>
+        <LoadingButton
+          variant="contained"
+          loading={loading}
+          sx={{ textTransform: "none" }}
+          onClick={handleSubmit}
+        >
           Sign In
         </LoadingButton>
       </Stack>

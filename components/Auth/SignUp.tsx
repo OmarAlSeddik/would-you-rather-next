@@ -26,10 +26,10 @@ const SignUp = (props: any) => {
     useCreateUserWithEmailAndPassword(auth);
 
   const formik = useFormik({
-    initialValues: { username: "", avatar: "1", email: "", password: "" },
+    initialValues: { name: "", avatar: "1", email: "", password: "" },
 
     validationSchema: yup.object({
-      username: yup.string().required("Username is required."),
+      name: yup.string().required("Name is required."),
       email: yup
         .string()
         .email("Enter a valid email.")
@@ -50,9 +50,9 @@ const SignUp = (props: any) => {
     databaseError &&
     databaseError.message === "Firebase: Error (auth/email-already-in-use).";
 
-  const usernameError = formik.touched.username && !!formik.errors.username;
-  const usernameHelperText =
-    (formik.touched.username && formik.errors.username) ||
+  const nameError = formik.touched.name && !!formik.errors.name;
+  const nameHelperText =
+    (formik.touched.name && formik.errors.name) ||
     "No restrictions. Doesn't have to be unique.";
 
   const emailError =
@@ -72,7 +72,8 @@ const SignUp = (props: any) => {
     axios.put(
       `https://would-you-rather-next-default-rtdb.firebaseio.com/users/${user.user.uid}.json`,
       {
-        username: formik.values.username,
+        id: user.user.uid,
+        name: formik.values.name,
         avatar: formik.values.avatar,
       }
     );
@@ -130,13 +131,13 @@ const SignUp = (props: any) => {
           fullWidth
           size="small"
           sx={{ marginBottom: "0.5rem" }}
-          id="username"
-          name="username"
-          label="Username"
-          value={formik.values.username}
+          id="name"
+          name="name"
+          label="Name"
+          value={formik.values.name}
           onChange={formik.handleChange}
-          error={usernameError}
-          helperText={usernameHelperText}
+          error={nameError}
+          helperText={nameHelperText}
         />
         <TextField
           fullWidth

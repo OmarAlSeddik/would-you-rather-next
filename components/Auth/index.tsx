@@ -15,7 +15,7 @@ import { useContext, useEffect, useState } from "react";
 import AppContext from "../../context/AppContext";
 
 const Auth = () => {
-  // -- routing block -- //
+  // -- routing -- //
   const context = useContext(AppContext);
   const router = useRouter();
 
@@ -23,7 +23,7 @@ const Auth = () => {
     if (context.loggedInUserId) router.replace("/");
   }, [context.loggedInUserId, router]);
 
-  // -- state block -- //
+  // -- state -- //
   const [isSignIn, setIsSignIn] = useState(true);
 
   const handleToggleSignIn = () => {
