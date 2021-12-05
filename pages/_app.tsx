@@ -4,17 +4,17 @@ import Header from "../components/Header";
 import type { AppProps } from "next/app";
 import Head from "next/Head";
 // -- providers -- //
-import { AppContextProvider } from "../context/AppContext";
+import { ThemeContextProvider } from "../context/ThemeContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <AppContextProvider>
+    <ThemeContextProvider>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Header />
       <Component {...pageProps} />
-    </AppContextProvider>
+    </ThemeContextProvider>
   );
 }
 

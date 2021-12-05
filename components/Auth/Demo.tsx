@@ -2,17 +2,14 @@
 import { Card, MenuItem, Stack, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 // -- basic/custom hooks -- //
-import { useContext, useState } from "react";
+import { useState } from "react";
 import useUsers from "../../hooks/useUsers";
-// -- context -- //
-import AppContext from "../../context/AppContext";
 // -- firebase -- //
 import { auth } from "../../firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 const Demo = () => {
-  const context = useContext(AppContext);
-  const [users] = useUsers();
+  const [users, loadingUsers] = useUsers();
   const [selectedUser, setSelectedUser] = useState<any>("");
 
   const handleSelectedUserChange = (
@@ -35,8 +32,6 @@ const Demo = () => {
     const password = "123456789";
     return signInWithEmailAndPassword(email, password);
   };
-
-  if (user) context.handleLogin(user.user.uid);
 
   return (
     <Card
@@ -76,7 +71,7 @@ const Demo = () => {
         </TextField>
         <LoadingButton
           variant="contained"
-          loading={loading}
+          loading={loading || loadingUsers}
           sx={{ textTransform: "none" }}
           onClick={handleSubmit}
         >

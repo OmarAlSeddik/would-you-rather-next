@@ -1,22 +1,26 @@
 // -- local components -- //
 import Auth from "../components/Auth";
+import Loading from "../components/Loading";
 // -- next -- //
 import { NextPage } from "next";
 import Head from "next/Head";
 import { useRouter } from "next/dist/client/router";
 // -- basic & custom hooks -- //
-import { useContext, useEffect } from "react";
-// -- context -- //
-import AppContext from "../context/AppContext";
+import { useEffect } from "react";
+// -- firebase -- //
+import { auth } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const AuthPage: NextPage = () => {
   // -- routing -- //
-  const context = useContext(AppContext);
   const router = useRouter();
+  const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
-    if (context.loggedInUserId) router.replace("/");
-  }, [context.loggedInUserId, router]);
+    if (user) router.replace("/");
+  }, [loading, router, user]);
+
+  if (loading) return <Loading />;
 
   return (
     <>

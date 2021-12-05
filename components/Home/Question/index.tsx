@@ -7,11 +7,11 @@ import LargeView from "./LargeView";
 import useAvatar from "../../../hooks/useAvatar";
 import { useContext } from "react";
 // -- context -- //
-import AppContext from "../../../context/AppContext";
+import ThemeContext from "../../../context/ThemeContext";
 
 const Question = (props: any) => {
   const avatar = useAvatar(props.avatar);
-  const context = useContext(AppContext);
+  const context = useContext(ThemeContext);
 
   return (
     <Card raised sx={{ marginBottom: "1rem" }}>

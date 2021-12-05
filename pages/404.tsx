@@ -1,9 +1,8 @@
 // -- local components -- //
-import AnswerQuestion from "../components/AnswerQuestion";
+import NotFound from "../components/NotFound";
 import Loading from "../components/Loading";
 // -- next -- //
 import { NextPage } from "next";
-import Head from "next/Head";
 import { useRouter } from "next/dist/client/router";
 // -- basic & custom hooks -- //
 import { useEffect } from "react";
@@ -11,7 +10,7 @@ import { useEffect } from "react";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-const AnswerQuestionPage: NextPage = () => {
+const NotFoundPage: NextPage = () => {
   // -- routing -- //
   const router = useRouter();
   const [user, loading] = useAuthState(auth);
@@ -22,15 +21,7 @@ const AnswerQuestionPage: NextPage = () => {
 
   if (loading) return <Loading />;
 
-  return (
-    <>
-      <Head>
-        <title>Answer a Question</title>
-        <meta name="description" content="Answer a question." />
-      </Head>
-      <AnswerQuestion />
-    </>
-  );
+  return <NotFound />;
 };
 
-export default AnswerQuestionPage;
+export default NotFoundPage;

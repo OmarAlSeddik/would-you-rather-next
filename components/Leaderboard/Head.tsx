@@ -10,10 +10,10 @@ import StyledTableCell from "./StyledTableCell";
 // -- basic/custom hooks -- //
 import { useContext } from "react";
 // -- context -- //
-import AppContext from "../../context/AppContext";
+import ThemeContext from "../../context/ThemeContext";
 
 const Head = () => {
-  const context = useContext(AppContext);
+  const context = useContext(ThemeContext);
 
   return (
     <TableHead>

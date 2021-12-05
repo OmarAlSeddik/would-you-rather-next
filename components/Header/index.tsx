@@ -3,15 +3,14 @@ import { AppBar } from "@mui/material";
 // -- local components -- //
 import Head from "./Head";
 import Navigation from "./Navigation";
-// -- basic & custom hooks -- //
-import { useContext } from "react";
-// -- context -- //
-import AppContext from "../../context/AppContext";
+// -- firebase -- //
+import { auth } from "../../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Header = () => {
-  const context = useContext(AppContext);
+  const [user] = useAuthState(auth);
 
-  if (!context.loggedInUserId) return <></>;
+  if (!user) return <></>;
 
   return (
     <AppBar color="default" position="fixed">

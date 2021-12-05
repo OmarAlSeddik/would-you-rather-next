@@ -8,19 +8,18 @@ import {
   Typography,
   Menu,
   MenuItem,
-  CircularProgress,
 } from "@mui/material";
 import QuestionAnswerTwoToneIcon from "@mui/icons-material/QuestionAnswerTwoTone";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 // -- basic/custom hooks -- //
-import { useContext, useState } from "react";
+import { useState } from "react";
 import useUser from "../../hooks/useUser";
 import useAvatar from "../../hooks/useAvatar";
-// -- context -- //
-import AppContext from "../../context/AppContext";
+// -- firebase -- //
+import { auth } from "../../firebase";
+import { signOut } from "@firebase/auth";
 
 const Head = () => {
-  const context = useContext(AppContext);
   const [user, loadingUser] = useUser();
   const avatar = useAvatar(user?.avatar);
 
@@ -61,7 +60,7 @@ const Head = () => {
             <Stack direction="row" alignItems="center">
               <Avatar variant="square">{loadingUser ? null : avatar}</Avatar>
               <Typography sx={{ padding: "0 0.5rem" }}>
-                {loadingUser ? <CircularProgress /> : user.name}
+                {loadingUser ? "Loading..." : user.name}
               </Typography>
             </Stack>
           </Card>
@@ -79,7 +78,7 @@ const Head = () => {
           <MenuItem
             onClick={() => {
               handleClose();
-              context.handleLogout();
+              signOut(auth);
             }}
           >
             <Stack direction="row" justifyContent="space-between">

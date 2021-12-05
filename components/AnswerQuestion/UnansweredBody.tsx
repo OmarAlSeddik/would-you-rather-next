@@ -8,6 +8,7 @@ import {
   FormControlLabel,
   Card,
 } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 // -- basic/custom hooks -- //
 import { useState } from "react";
 // -- axios & swr -- //
@@ -20,7 +21,7 @@ const UnansweredBody = (props: any) => {
     setAnswer((event.target as HTMLInputElement).value);
   };
 
-  const [disabledButton, setDisabledButton] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const option1VotesUrl = `https://would-you-rather-next-default-rtdb.firebaseio.com/questions/${props.question.id}/option1Votes.json`;
   const option2VotesUrl = `https://would-you-rather-next-default-rtdb.firebaseio.com/questions/${props.question.id}/option2Votes.json`;
@@ -57,7 +58,7 @@ const UnansweredBody = (props: any) => {
   };
 
   const handleSubmit = async () => {
-    setDisabledButton(true);
+    setLoading(true);
     addVote();
     addVoteToUser();
   };
@@ -92,14 +93,14 @@ const UnansweredBody = (props: any) => {
       <Typography variant="caption" align="center">
         You can not undo your vote.
       </Typography>
-      <Button
+      <LoadingButton
         variant="contained"
-        disabled={disabledButton}
+        loading={loading}
         sx={{ width: "6rem", margin: "0 auto", textTransform: "none" }}
         onClick={handleSubmit}
       >
         Answer
-      </Button>
+      </LoadingButton>
     </Stack>
   );
 };

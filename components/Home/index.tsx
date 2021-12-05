@@ -1,15 +1,10 @@
 // -- mui -- //
-import {
-  Card,
-  Stack,
-  ToggleButtonGroup,
-  ToggleButton,
-  CircularProgress,
-} from "@mui/material";
+import { Card, Stack, ToggleButtonGroup, ToggleButton } from "@mui/material";
 import { Box } from "@mui/system";
 // -- local components -- //
 import Unanswered from "./unanswered";
 import Answered from "./answered";
+import Loading from "../Loading";
 // -- basic & custom hooks -- //
 import { useState } from "react";
 import useUser from "../../hooks/useUser";
@@ -30,7 +25,8 @@ const Home = () => {
     }
   };
 
-  if (loadingUser || loadingQuestions) return <CircularProgress />;
+  if (loadingUser || loadingQuestions)
+    return <Loading loadingQuestions={true} />;
 
   const sortedQuestions = Object.values(questions).sort((a: any, b: any) => {
     const dateA = new Date(a.date);

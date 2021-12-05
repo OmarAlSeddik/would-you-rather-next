@@ -1,7 +1,7 @@
 // -- mui -- //
 import { Stack, Typography } from "@mui/material";
 // -- local component -- //
-import Question from "../Questions/Question";
+import Question from "./Question";
 
 const Answered = (props: any) => {
   return (

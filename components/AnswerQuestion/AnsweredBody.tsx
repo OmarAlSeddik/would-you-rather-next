@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 // -- next -- //
-import { NextLinkComposed } from "../../Link";
+import { NextLinkComposed } from "../Link";
 
 const AnsweredBody = (props: any) => {
   const LinearProgressWithLabel = (

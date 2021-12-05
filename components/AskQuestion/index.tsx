@@ -1,21 +1,22 @@
 // -- mui -- //
-import { Card, CircularProgress } from "@mui/material";
+import { Card } from "@mui/material";
 import { Box } from "@mui/system";
 // -- local component -- //
 import Head from "./Head";
 import UnsubmittedBody from "./UnsubmittedBody";
 import SubmittedBody from "./SubmittedBody";
+import Loading from "../Loading";
 // -- basic/custom hooks -- //
 import { useState } from "react";
-import useUser from "../../../hooks/useUser";
-import useAvatar from "../../../hooks/useAvatar";
+import useUser from "../../hooks/useUser";
+import useAvatar from "../../hooks/useAvatar";
 
 const AddQuestion = () => {
   const [user, loadingUser] = useUser();
   const avatar = useAvatar(user?.avatar);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  if (loadingUser) return <CircularProgress />;
+  if (loadingUser) return <Loading />;
 
   return (
     <Box sx={{ height: "100vh" }}>

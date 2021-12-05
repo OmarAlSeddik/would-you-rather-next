@@ -4,8 +4,15 @@ import { Box } from "@mui/system";
 // -- local components -- //
 import Body from "./Body";
 import Head from "./Head";
+import Loading from "../Loading";
+// -- basic/custom hooks -- //
+import useUsers from "../../hooks/useUsers";
 
 const Leaderboard = () => {
+  const [users, loadingUsers] = useUsers();
+
+  if (loadingUsers) return <Loading loadingUsers={true} />;
+
   return (
     <Box sx={{ height: "100vh" }}>
       <Card
@@ -37,7 +44,7 @@ const Leaderboard = () => {
           <Divider />
           <Table>
             <Head />
-            <Body />
+            <Body users={users} />
           </Table>
         </Stack>
       </Card>

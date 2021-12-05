@@ -1,7 +1,7 @@
 // mui imports //
 import { Stack, Typography, Avatar } from "@mui/material";
 // hook imports //
-import useAvatar from "../../../hooks/useAvatar";
+import useAvatar from "../../hooks/useAvatar";
 
 const Head = (props: any) => {
   return (
