@@ -4,22 +4,8 @@ import { Box } from "@mui/system";
 // -- local components -- //
 import Body from "./Body";
 import Head from "./Head";
-// -- next -- //
-import { useRouter } from "next/dist/client/router";
-// -- basic & custom hooks -- //
-import { useContext, useEffect, useState } from "react";
-// -- context -- //
-import AppContext from "../../context/AppContext";
 
 const Leaderboard = () => {
-  // -- routing block -- //
-  const context = useContext(AppContext);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!context.loggedInUserId) router.replace("/auth");
-  }, [context.loggedInUserId, router]);
-
   return (
     <Box sx={{ height: "100vh" }}>
       <Card

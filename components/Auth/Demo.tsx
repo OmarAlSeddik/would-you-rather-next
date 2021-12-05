@@ -12,7 +12,7 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 const Demo = () => {
   const context = useContext(AppContext);
-  const users = useUsers();
+  const [users] = useUsers();
   const [selectedUser, setSelectedUser] = useState<any>("");
 
   const handleSelectedUserChange = (
@@ -65,6 +65,7 @@ const Demo = () => {
           error={!!error}
           helperText="Select a demo user."
           sx={{ marginBottom: "0.5rem" }}
+          value={selectedUser}
           onChange={handleSelectedUserChange}
         >
           {userOptions.map((demoUser: any, index) => (

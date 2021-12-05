@@ -6,9 +6,13 @@ const useQuestions = () => {
   const url = `https://would-you-rather-next-default-rtdb.firebaseio.com/questions.json`;
   const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
-  const questions = useSWR(url, fetcher).data;
+  const { data, error } = useSWR(url, fetcher);
 
-  return questions;
+  const questions = data;
+  const loadingQuestions = !data && !error;
+  const loadingQuestionsError = error;
+
+  return [questions, loadingQuestions, loadingQuestionsError];
 };
 
 export default useQuestions;

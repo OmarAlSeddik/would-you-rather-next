@@ -1,5 +1,5 @@
 // -- local components -- //
-import Auth from "../components/Auth";
+import AnswerQuestion from "../components/Questions/AnswerQuestion";
 // -- next -- //
 import { NextPage } from "next";
 import Head from "next/Head";
@@ -9,24 +9,24 @@ import { useContext, useEffect } from "react";
 // -- context -- //
 import AppContext from "../context/AppContext";
 
-const AuthPage: NextPage = () => {
+const AnswerQuestionPage: NextPage = () => {
   // -- routing -- //
   const context = useContext(AppContext);
   const router = useRouter();
 
   useEffect(() => {
-    if (context.loggedInUserId) router.replace("/");
+    if (!context.loggedInUserId) router.replace("/auth");
   }, [context.loggedInUserId, router]);
 
   return (
     <>
       <Head>
-        <title>Auth Page</title>
-        <meta name="description" content="The authentication page." />
+        <title>Answer a Question</title>
+        <meta name="description" content="Answer a question." />
       </Head>
-      <Auth />
+      <AnswerQuestion />
     </>
   );
 };
 
-export default AuthPage;
+export default AnswerQuestionPage;

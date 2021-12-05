@@ -52,8 +52,8 @@ const Navigation = () => {
           "&:hover": { color: "primary.main" },
         }}
         component={NextLinkComposed}
-        to="/add-question"
-        value="/add-question"
+        to="/ask-question"
+        value="/ask-question"
       />
       <Tab
         label="Leaderboard"

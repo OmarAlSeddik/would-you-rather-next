@@ -1,36 +1,42 @@
 // -- mui -- //
-import { Card, Stack, ToggleButtonGroup, ToggleButton } from "@mui/material";
+import {
+  Card,
+  Stack,
+  ToggleButtonGroup,
+  ToggleButton,
+  CircularProgress,
+} from "@mui/material";
 import { Box } from "@mui/system";
 // -- local components -- //
 import Unanswered from "./unanswered";
 import Answered from "./answered";
-// -- next -- //
-import { useRouter } from "next/dist/client/router";
 // -- basic & custom hooks -- //
-import { useContext, useEffect, useState } from "react";
-// -- context -- //
-import AppContext from "../../context/AppContext";
+import { useState } from "react";
+import useUser from "../../hooks/useUser";
+import useQuestions from "../../hooks/useQuestions";
 
 const Home = () => {
-  // -- routing block -- //
-  const context = useContext(AppContext);
-  const router = useRouter();
+  const [user, loadingUser] = useUser();
+  const [questions, loadingQuestions] = useQuestions();
 
-  useEffect(() => {
-    if (!context.loggedInUserId) router.replace("/auth");
-  }, [context.loggedInUserId, router]);
-
-  // -- state block -- //
-  const [tapValue, setTabValue] = useState("unanswered");
+  const [tabValue, setTabValue] = useState("unanswered");
 
   const handleTabValue = (
     event: React.MouseEvent<HTMLElement>,
-    newTapValue: string | null
+    newTabValue: string | null
   ) => {
-    if (newTapValue !== null) {
-      setTabValue(newTapValue);
+    if (newTabValue !== null) {
+      setTabValue(newTabValue);
     }
   };
+
+  if (loadingUser || loadingQuestions) return <CircularProgress />;
+
+  const sortedQuestions = Object.values(questions).sort((a: any, b: any) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateB.valueOf() - dateA.valueOf();
+  });
 
   return (
     <Box>
@@ -48,7 +54,7 @@ const Home = () => {
             color="primary"
             fullWidth
             exclusive
-            value={tapValue}
+            value={tabValue}
             onChange={handleTabValue}
           >
             <ToggleButton
@@ -66,7 +72,11 @@ const Home = () => {
               Answered Questions
             </ToggleButton>
           </ToggleButtonGroup>
-          {tapValue === "unanswered" ? <Unanswered /> : <Answered />}
+          {tabValue === "unanswered" ? (
+            <Unanswered user={user} questions={sortedQuestions} />
+          ) : (
+            <Answered user={user} questions={sortedQuestions} />
+          )}
         </Stack>
       </Card>
     </Box>

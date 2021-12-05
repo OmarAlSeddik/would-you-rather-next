@@ -1,5 +1,7 @@
-// -- mui -- //
+// mui imports //
 import { Stack, Typography, Avatar } from "@mui/material";
+// hook imports //
+import useAvatar from "../../../hooks/useAvatar";
 
 const Head = (props: any) => {
   return (
@@ -16,7 +18,7 @@ const Head = (props: any) => {
         align="center"
         sx={{ color: "white" }}
       >
-        Ask a Question, {props.user.name}!
+        {props.question.author} Asks!
       </Typography>
       <Avatar
         sx={{
@@ -27,7 +29,7 @@ const Head = (props: any) => {
           border: "0.25rem solid #fff",
         }}
       >
-        {props.avatar}
+        {useAvatar(props.question.avatar)}
       </Avatar>
     </Stack>
   );

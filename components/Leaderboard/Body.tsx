@@ -1,5 +1,11 @@
 // -- mui -- //
-import { TableBody, Avatar, Typography, Stack } from "@mui/material";
+import {
+  TableBody,
+  Avatar,
+  Typography,
+  Stack,
+  CircularProgress,
+} from "@mui/material";
 // -- local component -- //
 import StyledTableRow from "./StyledTableRow";
 import StyledTableCell from "./StyledTableCell";
@@ -8,7 +14,7 @@ import useUsers from "../../hooks/useUsers";
 import useAvatars from "../../hooks/useAvatars";
 
 const Body = () => {
-  const users = useUsers();
+  const [users, loadingUsers] = useUsers();
 
   const avatars = useAvatars();
   const loadAvatar = (user: any) => {
@@ -27,7 +33,7 @@ const Body = () => {
         (user1.questions ? user1.questions.length : 0))
   );
 
-  console.log(sortedUsers);
+  if (loadingUsers) return <CircularProgress />;
 
   return (
     <TableBody>

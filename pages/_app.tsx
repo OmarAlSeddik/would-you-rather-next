@@ -1,10 +1,10 @@
+// -- local components -- //
+import Header from "../components/Header";
 // -- next -- //
 import type { AppProps } from "next/app";
 import Head from "next/Head";
 // -- providers -- //
 import { AppContextProvider } from "../context/AppContext";
-// -- local components -- //
-import Header from "../components/Header";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

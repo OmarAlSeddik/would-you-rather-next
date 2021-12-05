@@ -13,10 +13,10 @@ const UnsubmittedBody = (props: any) => {
   const option2InputRef = useRef<HTMLInputElement>(null);
 
   const newQuestion = {
-    id: props.user?.id + new Date().getTime(),
-    author: props.user?.id,
+    id: props.user.id + new Date().getTime(),
+    author: props.user.name,
     date: new Date(),
-    avatar: props.user?.avatar,
+    avatar: props.user.avatar,
     option1: "",
     option2: "",
   };
@@ -29,13 +29,13 @@ const UnsubmittedBody = (props: any) => {
   };
 
   const addQuestionToUser = () => {
-    props.user?.questions
+    props.user.questions
       ? axios.put(
-          `https://would-you-rather-next-default-rtdb.firebaseio.com/users/${props.user?.id}/questions.json`,
-          [...props.user?.questions, newQuestion.id]
+          `https://would-you-rather-next-default-rtdb.firebaseio.com/users/${props.user.id}/questions.json`,
+          [...props.user.questions, newQuestion.id]
         )
       : axios.put(
-          `https://would-you-rather-next-default-rtdb.firebaseio.com/users/${props.user?.id}/questions.json`,
+          `https://would-you-rather-next-default-rtdb.firebaseio.com/users/${props.user.id}/questions.json`,
           [newQuestion.id]
         );
   };

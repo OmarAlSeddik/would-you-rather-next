@@ -7,23 +7,10 @@ import Or from "./Or";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Footnote from "./Footnote";
-// -- next -- //
-import { useRouter } from "next/dist/client/router";
 // -- basic & custom hooks -- //
-import { useContext, useEffect, useState } from "react";
-// -- context -- //
-import AppContext from "../../context/AppContext";
+import { useState } from "react";
 
 const Auth = () => {
-  // -- routing -- //
-  const context = useContext(AppContext);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (context.loggedInUserId) router.replace("/");
-  }, [context.loggedInUserId, router]);
-
-  // -- state -- //
   const [isSignIn, setIsSignIn] = useState(true);
 
   const handleToggleSignIn = () => {

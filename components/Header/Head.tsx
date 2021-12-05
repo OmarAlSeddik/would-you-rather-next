@@ -8,6 +8,7 @@ import {
   Typography,
   Menu,
   MenuItem,
+  CircularProgress,
 } from "@mui/material";
 import QuestionAnswerTwoToneIcon from "@mui/icons-material/QuestionAnswerTwoTone";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
@@ -20,7 +21,7 @@ import AppContext from "../../context/AppContext";
 
 const Head = () => {
   const context = useContext(AppContext);
-  const user = useUser();
+  const [user, loadingUser] = useUser();
   const avatar = useAvatar(user?.avatar);
 
   // -- menu control -- //
@@ -58,8 +59,10 @@ const Head = () => {
         >
           <Card>
             <Stack direction="row" alignItems="center">
-              <Avatar variant="square">{avatar}</Avatar>
-              <Typography sx={{ padding: "0 0.5rem" }}>{user?.name}</Typography>
+              <Avatar variant="square">{loadingUser ? null : avatar}</Avatar>
+              <Typography sx={{ padding: "0 0.5rem" }}>
+                {loadingUser ? <CircularProgress /> : user.name}
+              </Typography>
             </Stack>
           </Card>
         </ButtonBase>
