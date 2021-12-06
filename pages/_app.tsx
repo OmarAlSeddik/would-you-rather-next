@@ -2,7 +2,7 @@
 import Header from "../components/Header";
 // -- next -- //
 import type { AppProps } from "next/app";
-import Head from "next/Head";
+import Head from "next/head";
 import { useRouter } from "next/dist/client/router";
 // -- providers -- //
 import { ThemeContextProvider } from "../context/ThemeContext";

@@ -1,10 +1,8 @@
 // -- local components -- //
 import AnswerQuestion from "../components/AnswerQuestion";
-import Loading from "../components/Loading";
-import NotFound from "../components/NotFound";
 // -- next -- //
 import { NextPage } from "next";
-import Head from "next/Head";
+import Head from "next/head";
 import { useRouter } from "next/dist/client/router";
 // -- basic & custom hooks -- //
 import { useEffect } from "react";

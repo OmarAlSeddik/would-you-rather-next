@@ -3,7 +3,7 @@ import Home from "../components/Home";
 import Loading from "../components/Loading";
 // -- next -- //
 import { NextPage } from "next";
-import Head from "next/Head";
+import Head from "next/head";
 import { useRouter } from "next/dist/client/router";
 // -- basic & custom hooks -- //
 import { useEffect } from "react";
