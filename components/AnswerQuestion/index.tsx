@@ -1,5 +1,5 @@
 // -- mui -- //
-import { Card } from "@mui/material";
+import { Card, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 // -- local component -- //
 import Head from "./Head";
@@ -10,31 +10,28 @@ import NotFound from "../NotFound";
 // -- next -- //
 import { useRouter } from "next/dist/client/router";
 // -- basic & custom hooks -- //
+import { useRef } from "react";
 import useUser from "../../hooks/useUser";
 import useQuestion from "../../hooks/useQuestion";
 
 const AnswerQuestion = () => {
   const [user, loadingUser] = useUser();
-  const { questionId } = useRouter().query;
+  const questionId = useRef(useRouter().query).current.questionId;
   const [question, loadingQuestion] = useQuestion(questionId as string);
   const userPreviouslyAnswered = user?.votes?.hasOwnProperty(questionId);
 
   if (question === null) return <NotFound />;
-  if (loadingUser || loadingQuestion) return <Loading />;
+  if (loadingUser || loadingQuestion) return <Loading loadingQuestion={true} />;
 
   return (
-    <Box sx={{ height: "100vh" }}>
+    <Stack alignItems="center" justifyContent="center" sx={{ height: "100vh" }}>
       <Card
         raised
         sx={{
-          position: "absolute",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
           width: "56.25rem",
           maxWidth: "100vw",
           marginTop: "3.25rem",
-          borderRadius: { xs: 0, md: "8px" },
+          borderRadius: "0.5rem",
         }}
       >
         <Head question={question} />
@@ -44,7 +41,7 @@ const AnswerQuestion = () => {
           <UnansweredBody user={user} question={question} />
         )}
       </Card>
-    </Box>
+    </Stack>
   );
 };
 

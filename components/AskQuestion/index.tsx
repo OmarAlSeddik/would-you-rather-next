@@ -1,5 +1,5 @@
 // -- mui -- //
-import { Card } from "@mui/material";
+import { Card, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 // -- local component -- //
 import Head from "./Head";
@@ -19,18 +19,14 @@ const AddQuestion = () => {
   if (loadingUser) return <Loading />;
 
   return (
-    <Box sx={{ height: "100vh" }}>
+    <Stack alignItems="center" justifyContent="center" sx={{ height: "100vh" }}>
       <Card
         raised
         sx={{
-          position: "absolute",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
           width: "56.25rem",
           maxWidth: "100vw",
           marginTop: "3.25rem",
-          borderRadius: { xs: 0, md: "8px" },
+          borderRadius: "0.5rem",
         }}
       >
         <Head user={user} avatar={avatar} />
@@ -40,7 +36,7 @@ const AddQuestion = () => {
           <UnsubmittedBody user={user} submit={() => setIsSubmitted(true)} />
         )}
       </Card>
-    </Box>
+    </Stack>
   );
 };
 

@@ -1,6 +1,7 @@
 // -- local components -- //
 import AnswerQuestion from "../components/AnswerQuestion";
 import Loading from "../components/Loading";
+import NotFound from "../components/NotFound";
 // -- next -- //
 import { NextPage } from "next";
 import Head from "next/Head";
@@ -10,6 +11,8 @@ import { useEffect } from "react";
 // -- firebase -- //
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+// -- framer motion -- //
+import { motion } from "framer-motion";
 
 const AnswerQuestionPage: NextPage = () => {
   // -- routing -- //
@@ -20,7 +23,12 @@ const AnswerQuestionPage: NextPage = () => {
     if (!user && !loading) router.replace("/auth");
   }, [loading, router, user]);
 
-  if (loading) return <Loading />;
+  const variants = {
+    initial: { scale: 0 },
+    animate: { scale: [0, 1.1, 0.9, 1] },
+    exit: { scale: 0 },
+    transition: { type: "spring", times: [0, 1, 1] },
+  };
 
   return (
     <>
@@ -28,7 +36,15 @@ const AnswerQuestionPage: NextPage = () => {
         <title>Answer a Question</title>
         <meta name="description" content="Answer a question." />
       </Head>
-      <AnswerQuestion />
+      <motion.div
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={{ type: "tween", times: [0, 0.5, 0.75, 1] }}
+      >
+        <AnswerQuestion />
+      </motion.div>
     </>
   );
 };

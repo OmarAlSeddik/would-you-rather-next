@@ -10,6 +10,8 @@ import {
 import { Box } from "@mui/system";
 // -- next -- //
 import { NextLinkComposed } from "../Link";
+// -- framer motion -- //
+import { motion } from "framer-motion";
 
 const AnsweredBody = (props: any) => {
   const LinearProgressWithLabel = (
@@ -29,6 +31,8 @@ const AnsweredBody = (props: any) => {
     );
   };
 
+  const variants = { whileHover: { scale: 1.1 } };
+
   const option1Votes = props.question.option1Votes
     ? props.question.option1Votes.length
     : 0;
@@ -38,13 +42,7 @@ const AnsweredBody = (props: any) => {
   const totalVotes = option1Votes + option2Votes;
 
   const Question1 = (
-    <Card
-      raised
-      sx={{
-        padding: "1rem",
-        marginBottom: "1rem",
-      }}
-    >
+    <Card raised sx={{ padding: "1rem", marginBottom: "1rem" }}>
       <Stack>
         <Typography>{props.question.option1}</Typography>
         {props.user.votes && props.user.votes[props.question.id] === 1 ? (
@@ -89,7 +87,7 @@ const AnsweredBody = (props: any) => {
 
   return (
     <Stack sx={{ width: "90%", margin: "0 auto", padding: "3rem 0 1rem" }}>
-      <Typography variant="h5" component="h2" sx={{ marginBottom: "1rem" }}>
+      <Typography variant="h5" component="h2" sx={{ marginBottom: "0.5rem" }}>
         Would you rather...
       </Typography>
       {Question1}
@@ -97,14 +95,22 @@ const AnsweredBody = (props: any) => {
       <Typography variant="caption" align="center">
         The green bar denotes where your vote has been placed.
       </Typography>
-      <Button
-        variant="contained"
-        sx={{ width: "6rem", margin: "0 auto", textTransform: "none" }}
-        component={NextLinkComposed}
-        to="/"
+      <Box
+        sx={{ width: "10rem", margin: "0 auto" }}
+        component={motion.div}
+        variants={variants}
+        whileHover="whileHover"
       >
-        Go Back
-      </Button>
+        <Button
+          fullWidth
+          variant="contained"
+          sx={{ textTransform: "none" }}
+          component={NextLinkComposed}
+          to="/"
+        >
+          Go Back
+        </Button>
+      </Box>
     </Stack>
   );
 };

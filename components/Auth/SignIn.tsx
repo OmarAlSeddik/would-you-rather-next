@@ -7,6 +7,9 @@ import * as yup from "yup";
 // -- firebase -- //
 import { auth } from "../../firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+// -- framer motion -- //
+import { motion } from "framer-motion";
+import { Box } from "@mui/system";
 
 const SignIn = (props: any) => {
   const [signInWithEmailAndPassword, user, loading, databaseError] =
@@ -59,6 +62,10 @@ const SignIn = (props: any) => {
     (wrongPassword && "Wrong password.") ||
     "Needs to be at least 8 characters long.";
 
+  const variants = {
+    whileHover: { scale: 1.1 },
+  };
+
   return (
     <Card
       raised
@@ -103,15 +110,17 @@ const SignIn = (props: any) => {
           helperText={passwordHelperText}
           sx={{ marginBottom: "0.5rem" }}
         />
-        <LoadingButton
-          fullWidth
-          variant="contained"
-          loading={loading}
-          sx={{ textTransform: "none", marginBottom: "0.5rem" }}
-          type="submit"
-        >
-          {loading ? "Loading..." : "Sign In"}
-        </LoadingButton>
+        <Box component={motion.div} variants={variants} whileHover="whileHover">
+          <LoadingButton
+            fullWidth
+            variant="contained"
+            loading={loading}
+            sx={{ textTransform: "none", marginBottom: "0.5rem" }}
+            type="submit"
+          >
+            {loading ? "Loading..." : "Sign In"}
+          </LoadingButton>
+        </Box>
       </form>
       <Button
         fullWidth
@@ -120,6 +129,9 @@ const SignIn = (props: any) => {
         size="small"
         sx={{ textTransform: "none" }}
         onClick={props.handleToggleSignIn}
+        component={motion.div}
+        variants={variants}
+        whileHover="whileHover"
       >
         Create a new account
       </Button>

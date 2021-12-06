@@ -18,6 +18,9 @@ import * as yup from "yup";
 // -- firebase -- //
 import { auth } from "../../firebase";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+// -- framer motion -- //
+import { motion } from "framer-motion";
+import { Box } from "@mui/system";
 
 const SignUp = (props: any) => {
   const avatars = useAvatars();
@@ -29,14 +32,19 @@ const SignUp = (props: any) => {
     initialValues: { name: "", avatar: "1", email: "", password: "" },
 
     validationSchema: yup.object({
-      name: yup.string().required("Name is required."),
+      name: yup
+        .string()
+        .max(14, "Name shouldn't be over 14 characters long.")
+        .required("Name is required."),
       email: yup
         .string()
         .email("Enter a valid email.")
+        .max(255, "That's a pretty long email...")
         .required("Email is required."),
       password: yup
         .string()
         .min(8, "Password should be at least 8 characters long.")
+        .max(255, "Password length shouldn't exceed 255 characters.")
         .required("Password is required."),
     }),
 
@@ -53,7 +61,7 @@ const SignUp = (props: any) => {
   const nameError = formik.touched.name && !!formik.errors.name;
   const nameHelperText =
     (formik.touched.name && formik.errors.name) ||
-    "No restrictions. Doesn't have to be unique.";
+    "Max length: 14. Doesn't have to be unique.";
 
   const emailError =
     (formik.touched.email && !!formik.errors.email) || emailInUse;
@@ -66,6 +74,10 @@ const SignUp = (props: any) => {
   const passwordHelperText =
     (formik.touched.password && formik.errors.password) ||
     "Needs to be at least 8 characters long.";
+
+  const variants = {
+    whileHover: { scale: 1.1 },
+  };
 
   // -- runs if the sign up process is successful -- //
   if (user) {
@@ -101,6 +113,9 @@ const SignUp = (props: any) => {
           variant="contained"
           sx={{ textTransform: "none" }}
           onClick={props.handleToggleSignIn}
+          component={motion.div}
+          variants={variants}
+          whileHover="whileHover"
         >
           Sign In
         </Button>
@@ -194,15 +209,17 @@ const SignUp = (props: any) => {
           error={passwordError}
           helperText={passwordHelperText}
         />
-        <LoadingButton
-          fullWidth
-          variant="contained"
-          loading={loading}
-          sx={{ textTransform: "none", marginBottom: "0.5rem" }}
-          type="submit"
-        >
-          {loading ? "Loading..." : "Sign Up"}
-        </LoadingButton>
+        <Box component={motion.div} variants={variants} whileHover="whileHover">
+          <LoadingButton
+            fullWidth
+            variant="contained"
+            loading={loading}
+            sx={{ textTransform: "none", marginBottom: "0.5rem" }}
+            type="submit"
+          >
+            {loading ? "Loading..." : "Sign Up"}
+          </LoadingButton>
+        </Box>
       </form>
       <Button
         fullWidth
@@ -210,6 +227,9 @@ const SignUp = (props: any) => {
         size="small"
         sx={{ textTransform: "none" }}
         onClick={props.handleToggleSignIn}
+        component={motion.div}
+        variants={variants}
+        whileHover="whileHover"
       >
         Sign into an existing account
       </Button>

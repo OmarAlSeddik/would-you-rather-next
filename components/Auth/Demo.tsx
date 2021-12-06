@@ -7,6 +7,8 @@ import useUsers from "../../hooks/useUsers";
 // -- firebase -- //
 import { auth } from "../../firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+// -- framer motion -- //
+import { motion } from "framer-motion";
 
 const Demo = () => {
   const [users, loadingUsers] = useUsers();
@@ -31,6 +33,10 @@ const Demo = () => {
     const email = selectedUser?.email;
     const password = "123456789";
     return signInWithEmailAndPassword(email, password);
+  };
+
+  const variants = {
+    whileHover: { scale: 1.1 },
   };
 
   return (
@@ -74,6 +80,9 @@ const Demo = () => {
           loading={loading || loadingUsers}
           sx={{ textTransform: "none" }}
           onClick={handleSubmit}
+          component={motion.div}
+          variants={variants}
+          whileHover="whileHover"
         >
           Sign In
         </LoadingButton>

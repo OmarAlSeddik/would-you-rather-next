@@ -1,9 +1,14 @@
 // -- mui -- //
 import { Stack, Typography, Button, Avatar, Divider } from "@mui/material";
+import { Box } from "@mui/system";
 // -- next -- //
 import { NextLinkComposed } from "../../Link";
+// -- framer motion -- //
+import { motion } from "framer-motion";
 
 const LargeView = (props: any) => {
+  const variants = { whileHover: { scale: 1.1 } };
+
   return (
     <Stack divider={<Divider flexItem />}>
       <Typography variant="h5" component="h2" sx={{ padding: "1rem" }}>
@@ -40,14 +45,22 @@ const LargeView = (props: any) => {
           <Typography align="center" variant="h6" component="p">
             -- Or --
           </Typography>
-          <Button
-            component={NextLinkComposed}
-            to={props.id}
-            variant="contained"
-            sx={{ width: "50%", margin: "0 auto", textTransform: "none" }}
+          <Box
+            sx={{ width: "50%", margin: "0 auto" }}
+            component={motion.div}
+            variants={variants}
+            whileHover="whileHover"
           >
-            Display
-          </Button>
+            <Button
+              fullWidth
+              component={NextLinkComposed}
+              to={props.id}
+              variant="contained"
+              sx={{ textTransform: "none" }}
+            >
+              Display
+            </Button>
+          </Box>
         </Stack>
       </Stack>
     </Stack>

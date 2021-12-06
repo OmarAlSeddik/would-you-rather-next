@@ -4,6 +4,8 @@ import { Stack, Typography, TextField, Button } from "@mui/material";
 import { useRef, useState } from "react";
 // -- axios -- //
 import axios from "axios";
+// -- framer motion -- //
+import { motion } from "framer-motion";
 
 const UnsubmittedBody = (props: any) => {
   const [option1Error, setOption1Error] = useState(false);
@@ -43,9 +45,9 @@ const UnsubmittedBody = (props: any) => {
   const handleSubmit = () => {
     const option1 = option1InputRef?.current?.value || "";
     const option2 = option2InputRef?.current?.value || "";
-    if (!option1 || option1.length > 100 || option1.length < 5) {
+    if (!option1 || option1.length > 50 || option1.length < 5) {
       setOption1Error(true);
-    } else if (!option2 || option2.length > 100 || option2.length < 5) {
+    } else if (!option2 || option2.length > 50 || option2.length < 5) {
       setOption2Error(true);
     } else {
       newQuestion.option1 = option1;
@@ -55,6 +57,8 @@ const UnsubmittedBody = (props: any) => {
       props.submit();
     }
   };
+
+  const variants = { whileHover: { scale: 1.1 } };
 
   return (
     <Stack sx={{ width: "90%", margin: "0 auto", padding: "3rem 0 1rem" }}>
@@ -78,12 +82,15 @@ const UnsubmittedBody = (props: any) => {
         error={option2Error}
       />
       <Typography variant="caption" align="center">
-        Allowed question length range is 5-100 characters.
+        Allowed question length range is 5-50 characters.
       </Typography>
       <Button
         variant="contained"
-        sx={{ width: "6rem", margin: "0 auto", textTransform: "none" }}
+        sx={{ width: "10rem", margin: "0 auto", textTransform: "none" }}
         onClick={handleSubmit}
+        component={motion.div}
+        variants={variants}
+        whileHover="whileHover"
       >
         Ask
       </Button>

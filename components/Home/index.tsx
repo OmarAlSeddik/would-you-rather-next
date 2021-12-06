@@ -39,10 +39,10 @@ const Home = () => {
       <Card
         raised
         sx={{
-          margin: "9rem auto 4.5rem",
+          margin: "6rem auto 2rem",
           width: "56.25rem",
           maxWidth: "100vw",
-          borderRadius: { xs: 0, md: "8px" },
+          borderRadius: "0.5rem",
         }}
       >
         <Stack>
@@ -58,14 +58,14 @@ const Home = () => {
               value="unanswered"
               sx={{ borderRadius: 0, textTransform: "none" }}
             >
-              Unasnwered Questions
+              Unasnwered
             </ToggleButton>
             <ToggleButton
               disableRipple
               value="answered"
               sx={{ borderRadius: 0, textTransform: "none" }}
             >
-              Answered Questions
+              Answered
             </ToggleButton>
           </ToggleButtonGroup>
           {tabValue === "unanswered" ? (

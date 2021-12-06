@@ -36,7 +36,7 @@ const Body = (props: any) => {
               <Typography
                 sx={{
                   padding: "0.25rem 0.5rem",
-                  borderRadius: "8px",
+                  borderRadius: "0.5rem",
                   backgroundColor: "primary.main",
                   color: "white",
                   margin: "auto auto",

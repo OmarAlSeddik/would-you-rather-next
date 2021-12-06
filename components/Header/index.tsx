@@ -1,21 +1,34 @@
 // -- mui -- //
 import { AppBar } from "@mui/material";
 // -- local components -- //
-import Head from "./Head";
-import Navigation from "./Navigation";
-// -- firebase -- //
-import { auth } from "../../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import LargeView from "./LargeView";
+import MobileView from "./MobileView";
+// -- basic & custom hooks -- //
+import { useContext } from "react";
+// -- context -- //
+import ThemeContext from "../../context/ThemeContext";
+// -- framer motion -- //
+import { motion } from "framer-motion";
 
 const Header = () => {
-  const [user] = useAuthState(auth);
+  const context = useContext(ThemeContext);
 
-  if (!user) return <></>;
+  const variants = {
+    initial: { y: "-300%" },
+    animate: { y: 0 },
+    exit: { y: "-300%", transition: { delay: 0.25 } },
+  };
 
   return (
-    <AppBar color="default" position="fixed">
-      <Head />
-      <Navigation />
+    <AppBar color="transparent" elevation={0}>
+      <motion.div
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
+        {context.isMobile ? <MobileView /> : <LargeView />}
+      </motion.div>
     </AppBar>
   );
 };

@@ -14,6 +14,8 @@ import { useState } from "react";
 // -- axios & swr -- //
 import axios from "axios";
 import { mutate } from "swr";
+// -- framer motion -- //
+import { motion } from "framer-motion";
 
 const UnansweredBody = (props: any) => {
   const [answer, setAnswer] = useState("first");
@@ -63,9 +65,11 @@ const UnansweredBody = (props: any) => {
     addVoteToUser();
   };
 
+  const variants = { whileHover: { scale: 1.1 } };
+
   return (
     <Stack sx={{ width: "90%", margin: "0 auto", padding: "3rem 0 1rem" }}>
-      <Typography variant="h5" component="h2" sx={{ marginBottom: "1rem" }}>
+      <Typography variant="h5" component="h2" sx={{ marginBottom: "0.5rem" }}>
         Would you rather...
       </Typography>
       <RadioGroup
@@ -96,8 +100,11 @@ const UnansweredBody = (props: any) => {
       <LoadingButton
         variant="contained"
         loading={loading}
-        sx={{ width: "6rem", margin: "0 auto", textTransform: "none" }}
+        sx={{ width: "10rem", margin: "0 auto", textTransform: "none" }}
         onClick={handleSubmit}
+        component={motion.button}
+        variants={variants}
+        whileHover="whileHover"
       >
         Answer
       </LoadingButton>

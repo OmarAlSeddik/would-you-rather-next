@@ -10,6 +10,8 @@ import { useEffect } from "react";
 // -- firebase -- //
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+// -- framer motion -- //
+import { motion } from "framer-motion";
 
 const HomePage: NextPage = () => {
   // -- routing -- //
@@ -22,6 +24,12 @@ const HomePage: NextPage = () => {
 
   if (loading) return <Loading />;
 
+  const variants = {
+    initial: { x: "-100%" },
+    animate: { x: 0 },
+    exit: { x: "-100%" },
+  };
+
   return (
     <>
       <Head>
@@ -31,7 +39,14 @@ const HomePage: NextPage = () => {
           content="The main page of the would you rather project."
         />
       </Head>
-      <Home />
+      <motion.div
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
+        <Home />
+      </motion.div>
     </>
   );
 };

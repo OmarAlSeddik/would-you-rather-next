@@ -10,6 +10,8 @@ import { useEffect } from "react";
 // -- firebase -- //
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+// -- framer motion -- //
+import { motion } from "framer-motion";
 
 const AuthPage: NextPage = () => {
   // -- routing -- //
@@ -22,13 +24,26 @@ const AuthPage: NextPage = () => {
 
   if (loading) return <Loading />;
 
+  const variants = {
+    initial: { y: "100%" },
+    animate: { y: 0 },
+    exit: { y: "100%" },
+  };
+
   return (
     <>
       <Head>
         <title>Auth Page</title>
         <meta name="description" content="The authentication page." />
       </Head>
-      <Auth />
+      <motion.div
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
+        <Auth />
+      </motion.div>
     </>
   );
 };

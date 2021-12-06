@@ -10,6 +10,8 @@ import { useEffect } from "react";
 // -- firebase -- //
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+// -- framer motion -- //
+import { motion } from "framer-motion";
 
 const AskQuestionPage: NextPage = () => {
   // -- routing -- //
@@ -22,13 +24,28 @@ const AskQuestionPage: NextPage = () => {
 
   if (loading) return <Loading />;
 
+  const variants = {
+    initial: { scale: 0 },
+    animate: { scale: [0, 1.1, 0.9, 1] },
+    exit: { scale: 0 },
+    transition: { type: "spring", times: [0, 1, 1] },
+  };
+
   return (
     <>
       <Head>
         <title>Ask a Question</title>
         <meta name="description" content="Ask a question." />
       </Head>
-      <AskQuestion />
+      <motion.div
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={{ type: "tween", times: [0, 0.5, 0.75, 1] }}
+      >
+        <AskQuestion />
+      </motion.div>
     </>
   );
 };

@@ -1,7 +1,7 @@
 // -- mui -- //
-import { Tab, Tabs } from "@mui/material";
+import { Paper, Tab, Tabs } from "@mui/material";
 // -- next -- //
-import { NextLinkComposed } from "../Link";
+import { NextLinkComposed } from "../../Link";
 import { useRouter } from "next/dist/client/router";
 // -- basic/custom hooks -- //
 import { useEffect, useState } from "react";
@@ -23,11 +23,10 @@ const Navigation = () => {
     <Tabs
       variant="fullWidth"
       sx={{
-        width: "35rem",
-        maxWidth: "100vw",
+        width: "18rem",
+        margin: "0 auto",
         ".MuiTabs-indicator": {
-          height: "100%",
-          backgroundColor: "secondary.main",
+          height: "0",
         },
       }}
       value={pageValue}
@@ -38,18 +37,26 @@ const Navigation = () => {
         disableRipple
         sx={{
           textTransform: "none",
-          "&:hover": { color: "primary.main" },
+          "&:hover": { color: "#000" },
+          "&.Mui-selected": {
+            color: "primary.main",
+            fontWeight: "bold",
+          },
         }}
         component={NextLinkComposed}
         to="/"
         value="/"
       />
       <Tab
-        label="Ask a Question"
+        label="Ask"
         disableRipple
         sx={{
           textTransform: "none",
-          "&:hover": { color: "primary.main" },
+          "&:hover": { color: "#000" },
+          "&.Mui-selected": {
+            color: "primary.main",
+            fontWeight: "bold",
+          },
         }}
         component={NextLinkComposed}
         to="/ask-question"
@@ -60,7 +67,11 @@ const Navigation = () => {
         disableRipple
         sx={{
           textTransform: "none",
-          "&:hover": { color: "primary.main" },
+          "&:hover": { color: "#000" },
+          "&.Mui-selected": {
+            color: "primary.main",
+            fontWeight: "bold",
+          },
         }}
         component={NextLinkComposed}
         to="/leaderboard"
