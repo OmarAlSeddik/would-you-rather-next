@@ -5,7 +5,7 @@ import { LoadingButton } from "@mui/lab";
 import { useState } from "react";
 import useUsers from "../../hooks/useUsers";
 // -- firebase -- //
-import { auth } from "../../firebase";
+import { auth } from "../../firebase/firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 // -- framer motion -- //
 import { motion } from "framer-motion";

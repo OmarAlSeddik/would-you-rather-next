@@ -3,7 +3,7 @@ import axios from "axios";
 import useSWR from "swr";
 // -- firebase -- //
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
+import { auth } from "../firebase/firebase";
 
 const useUser = () => {
   const [authUser, loading] = useAuthState(auth);

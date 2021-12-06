@@ -8,7 +8,7 @@ import { useRouter } from "next/dist/client/router";
 // -- basic & custom hooks -- //
 import { useEffect } from "react";
 // -- firebase -- //
-import { auth } from "../firebase";
+import { auth } from "../firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 // -- framer motion -- //
 import { motion } from "framer-motion";

@@ -16,7 +16,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as yup from "yup";
 // -- firebase -- //
-import { auth } from "../../firebase";
+import { auth } from "../../firebase/firebase";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 // -- framer motion -- //
 import { motion } from "framer-motion";
