@@ -1,34 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
+# Would You Rather Project (Nextjs Version)
+This is my personal take of Udacity's Would You Rather project using the Nextjs meta-framework. This also happens to be my third completed React project and my very first completed Nextjs project! It has only been 4 and a half months of coding since my first line of HTML code as of the date of writing this! (6th of Dec, 2021)
+## Demo
+###
+## Installation
+You can either download the zip file and extract it or download the project through git:
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+git clone https://github.com/OmarAlSeddik/would-you-rather
+cd would-you-rather
+```
+Next, install the dependencies and run:
+### npm
+```
+npm install
+npm start
+```
+### yarn
+```
+yarn install
+yarn start
+```
+## Used Libraries/Packages
+#### [MUI](https://mui.com/)
+#### [Framer-Motion](https://www.framer.com/motion/)
+#### [SWR](https://swr.vercel.app/)
+#### [Axios](https://axios-http.com/)
+#### [Formik](https://formik.org/)
+#### [Firebase](https://firebase.google.com/)
+#### [react-firebase-hooks](https://www.npmjs.com/package/react-firebase-hooks)
+#### [yup](https://www.npmjs.com/package/yup)
+## Features
+#### Fulfills Udacity's Specifications
+This project fulfills all Udacity's Would You Rather project specifications. [The Specs](https://review.udacity.com/#!/rubrics/1567/view).
+#### 100% Responsive
+This project supports screens of all sizes and scales with the user's preferred zoom/font size settings.
+#### User Authentication and a Realtime Database
+This project utilizes Firebase's powerful authentication and realtime database. All questions and users are stored in the database.
+#### SWR
+This project utilizes the SWR hooks for a lot of features including Automatic Data Revalidation and Local Mutation.
+#### Page Transition Animations
+All pages animate during transitions in and out of the react tree.
