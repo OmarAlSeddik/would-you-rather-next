@@ -82,7 +82,7 @@ const SignUp = (props: any) => {
   // -- runs if the sign up process is successful -- //
   if (user) {
     axios.put(
-      `https://would-you-rather-next-default-rtdb.firebaseio.com/users/${user.user.uid}.json`,
+      `${process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL}/users/${user.user.uid}.json`,
       {
         id: user.user.uid,
         name: formik.values.name,

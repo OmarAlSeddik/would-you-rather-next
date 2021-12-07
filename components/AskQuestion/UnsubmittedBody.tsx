@@ -25,7 +25,7 @@ const UnsubmittedBody = (props: any) => {
 
   const addQuestion = () => {
     axios.put(
-      `https://would-you-rather-next-default-rtdb.firebaseio.com/questions/${newQuestion.id}.json`,
+      `${process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL}/questions/${newQuestion.id}.json`,
       newQuestion
     );
   };
@@ -33,11 +33,11 @@ const UnsubmittedBody = (props: any) => {
   const addQuestionToUser = () => {
     props.user.questions
       ? axios.put(
-          `https://would-you-rather-next-default-rtdb.firebaseio.com/users/${props.user.id}/questions.json`,
+          `${process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL}/users/${props.user.id}/questions.json`,
           [...props.user.questions, newQuestion.id]
         )
       : axios.put(
-          `https://would-you-rather-next-default-rtdb.firebaseio.com/users/${props.user.id}/questions.json`,
+          `${process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL}/users/${props.user.id}/questions.json`,
           [newQuestion.id]
         );
   };

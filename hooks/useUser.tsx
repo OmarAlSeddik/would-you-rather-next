@@ -8,7 +8,7 @@ import { auth } from "../firebase/firebase";
 const useUser = () => {
   const [authUser, loading] = useAuthState(auth);
 
-  const url = `https://would-you-rather-next-default-rtdb.firebaseio.com/users/${authUser?.uid}.json`;
+  const url = `${process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL}/users/${authUser?.uid}.json`;
   const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
   const { data, error } = useSWR(url, fetcher);

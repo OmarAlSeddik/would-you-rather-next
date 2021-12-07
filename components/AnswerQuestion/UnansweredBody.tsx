@@ -25,12 +25,12 @@ const UnansweredBody = (props: any) => {
 
   const [loading, setLoading] = useState(false);
 
-  const option1VotesUrl = `https://would-you-rather-next-default-rtdb.firebaseio.com/questions/${props.question.id}/option1Votes.json`;
-  const option2VotesUrl = `https://would-you-rather-next-default-rtdb.firebaseio.com/questions/${props.question.id}/option2Votes.json`;
-  const userVoteUrl = `https://would-you-rather-next-default-rtdb.firebaseio.com/users/${props.user.id}/votes/${props.question.id}.json`;
+  const option1VotesUrl = `${process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL}/questions/${props.question.id}/option1Votes.json`;
+  const option2VotesUrl = `${process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL}/questions/${props.question.id}/option2Votes.json`;
+  const userVoteUrl = `${process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL}/users/${props.user.id}/votes/${props.question.id}.json`;
 
-  const userUrl = `https://would-you-rather-next-default-rtdb.firebaseio.com/users/${props.user.id}.json`;
-  const questionUrl = `https://would-you-rather-next-default-rtdb.firebaseio.com/questions/${props.question.id}.json`;
+  const userUrl = `${process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL}/users/${props.user.id}.json`;
+  const questionUrl = `${process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL}/questions/${props.question.id}.json`;
 
   const addVote = async () => {
     if (answer === "first")

@@ -3,7 +3,7 @@ import axios from "axios";
 import useSWR from "swr";
 
 const useQuestion = (questionId: string) => {
-  const url = `https://would-you-rather-next-default-rtdb.firebaseio.com/questions/${questionId}.json`;
+  const url = `${process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL}/questions/${questionId}.json`;
   const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
   const { data, error } = useSWR(url, fetcher);
