@@ -92,9 +92,6 @@ const AnsweredBody = (props: any) => {
       </Typography>
       {Question1}
       {Question2}
-      <Typography variant="caption" align="center">
-        The green bar denotes where your vote has been placed.
-      </Typography>
       <Box
         sx={{ width: "10rem", margin: "0 auto" }}
         component={motion.div}
@@ -111,6 +108,9 @@ const AnsweredBody = (props: any) => {
           Go Back
         </Button>
       </Box>
+      <Typography variant="caption" align="center">
+        The green bar denotes where your vote has been placed.
+      </Typography>
     </Stack>
   );
 };

@@ -94,9 +94,6 @@ const UnansweredBody = (props: any) => {
           />
         </Card>
       </RadioGroup>
-      <Typography variant="caption" align="center">
-        You can not undo your vote.
-      </Typography>
       <LoadingButton
         variant="contained"
         loading={loading}
@@ -108,6 +105,9 @@ const UnansweredBody = (props: any) => {
       >
         Answer
       </LoadingButton>
+      <Typography variant="caption" align="center">
+        You can not undo your vote.
+      </Typography>
     </Stack>
   );
 };
