@@ -8,12 +8,13 @@ import {
   CssBaseline,
 } from "@mui/material";
 import { indigo } from "@mui/material/colors";
-// -- hook -- //
+// -- basic & custom hooks -- //
 import { createContext, useMemo } from "react";
 
 const ThemeContext = createContext({
   theme: {},
   isMobile: false,
+  isSmallMobile: false,
 });
 
 export const ThemeContextProvider = (props: any) => {
@@ -22,14 +23,11 @@ export const ThemeContextProvider = (props: any) => {
     () =>
       createTheme({
         breakpoints: {
-          values: { xs: 0, sm: 728, md: 900, lg: 1200, xl: 1536 },
+          values: { xs: 0, sm: 368, md: 736, lg: 1200, xl: 1536 },
         },
         palette: {
           primary: {
             main: indigo[900],
-          },
-          secondary: {
-            main: alpha(indigo[900], 0.1),
           },
           background: {
             default: alpha(indigo[900], 0.2),
@@ -43,10 +41,11 @@ export const ThemeContextProvider = (props: any) => {
   );
 
   theme = responsiveFontSizes(theme);
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isSmallMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <ThemeContext.Provider value={{ theme, isMobile }}>
+    <ThemeContext.Provider value={{ theme, isMobile, isSmallMobile }}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {props.children}

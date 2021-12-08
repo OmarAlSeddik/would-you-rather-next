@@ -14,37 +14,34 @@ const Leaderboard = () => {
   if (loadingUsers) return <Loading loadingUsers={true} />;
 
   return (
-    <Stack alignItems="center" justifyContent="center" sx={{ height: "100vh" }}>
-      <Card
-        raised
-        sx={{
-          width: "56.25rem",
-          maxWidth: "100vw",
-          marginTop: "2rem",
-          borderRadius: "0.5rem",
-        }}
-      >
-        <Stack>
-          <Typography
-            variant="h4"
-            component="h1"
-            align="center"
-            sx={{
-              padding: "1rem 0",
-              color: "white",
-              backgroundColor: "primary.main",
-            }}
-          >
-            Leaderboard
-          </Typography>
-          <Divider />
-          <Table>
-            <Head />
-            <Body users={users} />
-          </Table>
-        </Stack>
-      </Card>
-    </Stack>
+    <Card
+      raised
+      sx={{
+        margin: "6rem auto 2rem",
+        width: "56.25rem",
+        maxWidth: "100vw",
+      }}
+    >
+      <Stack>
+        <Typography
+          variant="h4"
+          component="h1"
+          align="center"
+          sx={{
+            padding: "1rem 0",
+            color: "white",
+            backgroundColor: "primary.main",
+          }}
+        >
+          Leaderboard
+        </Typography>
+        <Divider />
+        <Table>
+          <Head />
+          <Body users={users} />
+        </Table>
+      </Stack>
+    </Card>
   );
 };
 

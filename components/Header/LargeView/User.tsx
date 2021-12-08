@@ -14,7 +14,7 @@ import { useState } from "react";
 import useUser from "../../../hooks/useUser";
 import useAvatar from "../../../hooks/useAvatar";
 // -- firebase -- //
-import { auth } from "../../../firebase/firebase";
+import { auth } from "../../../firebase";
 import { signOut } from "@firebase/auth";
 // -- framer motion -- //
 import { motion } from "framer-motion";

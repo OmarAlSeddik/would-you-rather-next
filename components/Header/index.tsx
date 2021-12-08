@@ -14,9 +14,9 @@ const Header = () => {
   const context = useContext(ThemeContext);
 
   const variants = {
-    initial: { y: "-300%" },
+    initial: { y: "-100%" },
     animate: { y: 0 },
-    exit: { y: "-300%", transition: { delay: 0.25 } },
+    exit: { y: "-100%", transition: { delay: 0.25 } },
   };
 
   return (

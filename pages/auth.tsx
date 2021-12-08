@@ -1,3 +1,5 @@
+// -- mui -- //
+import { Box } from "@mui/system";
 // -- local components -- //
 import Auth from "../components/Auth";
 import Loading from "../components/Loading";
@@ -8,7 +10,7 @@ import { useRouter } from "next/dist/client/router";
 // -- basic & custom hooks -- //
 import { useEffect } from "react";
 // -- firebase -- //
-import { auth } from "../firebase/firebase";
+import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 // -- framer motion -- //
 import { motion } from "framer-motion";
@@ -31,20 +33,21 @@ const AuthPage: NextPage = () => {
   };
 
   return (
-    <>
+    <Box sx={{ overflow: "hidden" }}>
       <Head>
         <title>Auth Page</title>
         <meta name="description" content="The authentication page." />
       </Head>
-      <motion.div
+      <Box
+        component={motion.div}
         variants={variants}
         initial="initial"
         animate="animate"
         exit="exit"
       >
         <Auth />
-      </motion.div>
-    </>
+      </Box>
+    </Box>
   );
 };
 

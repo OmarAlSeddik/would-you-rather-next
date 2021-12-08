@@ -14,10 +14,8 @@ import { useState } from "react";
 import useUser from "../../../hooks/useUser";
 import useAvatar from "../../../hooks/useAvatar";
 // -- firebase -- //
-import { auth } from "../../../firebase/firebase";
+import { auth } from "../../../firebase";
 import { signOut } from "@firebase/auth";
-// -- framer motion -- //
-import { motion } from "framer-motion";
 
 const User = () => {
   const [user, loadingUser] = useUser();
@@ -35,10 +33,6 @@ const User = () => {
     setAnchorEl(null);
   };
 
-  const variants = {
-    whileHover: { scale: 1.1 },
-  };
-
   return (
     <>
       <ButtonBase
@@ -46,19 +40,12 @@ const User = () => {
         sx={{ textTransform: "none" }}
         onClick={handleOpen}
       >
-        <Card
-          sx={{ borderRadius: 0 }}
-          component={motion.div}
-          variants={variants}
-          whileHover="whileHover"
-        >
-          <Stack direction="row" alignItems="center">
-            <Avatar variant="square">{loadingUser ? null : avatar}</Avatar>
-            <Typography sx={{ padding: "0 0.5rem" }}>
-              {loadingUser ? "Loading..." : user.name}
-            </Typography>
-          </Stack>
-        </Card>
+        <Stack direction="row" alignItems="center">
+          <Avatar variant="square">{loadingUser ? null : avatar}</Avatar>
+          <Typography sx={{ padding: "0 0.5rem" }}>
+            {loadingUser ? "Loading..." : user.name}
+          </Typography>
+        </Stack>
       </ButtonBase>
       <Menu
         anchorEl={anchorEl}

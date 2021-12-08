@@ -1,3 +1,5 @@
+// -- mui -- //
+import { Box } from "@mui/system";
 // -- local components -- //
 import Leaderboard from "../components/Leaderboard";
 import Loading from "../components/Loading";
@@ -8,7 +10,7 @@ import { useRouter } from "next/dist/client/router";
 // -- basic & custom hooks -- //
 import { useEffect } from "react";
 // -- firebase -- //
-import { auth } from "../firebase/firebase";
+import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 // -- framer motion -- //
 import { motion } from "framer-motion";
@@ -25,26 +27,27 @@ const LeaderboardPage: NextPage = () => {
   if (loading) return <Loading />;
 
   const variants = {
-    initial: { x: "100%" },
-    animate: { x: "0%" },
-    exit: { x: "100%" },
+    initial: { x: "100vw" },
+    animate: { x: 0 },
+    exit: { x: "100vw" },
   };
 
   return (
-    <>
+    <Box sx={{ overflowX: "hidden" }}>
       <Head>
         <title>Leaderboard</title>
         <meta name="description" content="The user leaderboard." />
       </Head>
-      <motion.div
+      <Box
+        component={motion.div}
         variants={variants}
         initial="initial"
         animate="animate"
         exit="exit"
       >
         <Leaderboard />
-      </motion.div>
-    </>
+      </Box>
+    </Box>
   );
 };
 

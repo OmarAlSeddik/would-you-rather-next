@@ -1,3 +1,5 @@
+// -- mui -- //
+import { Box } from "@mui/system";
 // -- local components -- //
 import AskQuestion from "../components/AskQuestion";
 import Loading from "../components/Loading";
@@ -8,7 +10,7 @@ import { useRouter } from "next/dist/client/router";
 // -- basic & custom hooks -- //
 import { useEffect } from "react";
 // -- firebase -- //
-import { auth } from "../firebase/firebase";
+import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 // -- framer motion -- //
 import { motion } from "framer-motion";
@@ -32,12 +34,13 @@ const AskQuestionPage: NextPage = () => {
   };
 
   return (
-    <>
+    <Box sx={{ overflow: "hidden" }}>
       <Head>
         <title>Ask a Question</title>
         <meta name="description" content="Ask a question." />
       </Head>
-      <motion.div
+      <Box
+        component={motion.div}
         variants={variants}
         initial="initial"
         animate="animate"
@@ -45,8 +48,8 @@ const AskQuestionPage: NextPage = () => {
         transition={{ type: "tween", times: [0, 0.5, 0.75, 1] }}
       >
         <AskQuestion />
-      </motion.div>
-    </>
+      </Box>
+    </Box>
   );
 };
 

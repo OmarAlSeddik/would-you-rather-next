@@ -5,7 +5,7 @@ import { LoadingButton } from "@mui/lab";
 import { useFormik } from "formik";
 import * as yup from "yup";
 // -- firebase -- //
-import { auth } from "../../firebase/firebase";
+import { auth } from "../../firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 // -- framer motion -- //
 import { motion } from "framer-motion";
