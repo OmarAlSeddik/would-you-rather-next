@@ -1,6 +1,5 @@
 # Would You Rather Project (Next.js Version)
 This is my personal take of Udacity's Would You Rather project using the Nextjs meta-framework. This also happens to be my third completed React project and my very first completed Next.js project! It has only been 4 and a half months of coding since my first line of HTML code as of the date of writing this! (6th of Dec, 2021)
-#### The bug hunt is in progress! (Mobile Version)
 ## Demo
 ### https://would-you-rather-next.netlify.app/
 ## Improvements & Changes Made
